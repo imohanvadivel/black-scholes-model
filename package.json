@@ -1,0 +1,23 @@
+{
+  "name": "black-scholes-model",
+  "description": "Black Scholes Model Implementation",
+  "license": "MIT",
+  "author": "Mohan Vadivel <https://mohanvadivel.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/imohanvadivel/black-scholes-model.git"
+  },
+  "bugs": {
+    "url": "https://github.com/imohanvadivel/black-scholes-model/issues"
+  },
+  "scripts": {
+    "dev": "esbuild src/style.css src/script.ts --bundle --watch --outdir=./",
+    "build": "esbuild src/style.css src/script.ts --bundle --minify --outdir=./"
+  },
+  "dependencies": {
+    "grilles": "^1.0.5"
+  },
+  "devDependencies": {
+    "esbuild": "^0.14.21"
+  }
+}

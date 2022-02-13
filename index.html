@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Black Scholes Model</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body >
+    <header>
+      <h1>
+        Black-Scholes Option Pricing Model
+      </h1>
+      <p class="desc">
+        The Black-Scholes model is a mathematical model for pricing an options contract. Simply plug in input to get the estimated value of the European-Option contract's premium and greeks.
+        <div class="flex-h icons center">
+        <a
+          class="github plain"
+          target="_blank"
+          href="https://github.com/imohanvadivel/black-scholes-model"
+        >
+          <svg
+            class="h-1 w-1"
+            viewBox="0 0 20 20"
+            width="20"
+            height="20"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M10 1.24999C7.92268 1.25027 5.91321 1.9896 4.33106 3.33574C2.74891 4.68187 1.69729 6.54699 1.36432 8.59745C1.03134 10.6479 1.43874 12.75 2.51362 14.5276C3.58851 16.3052 5.26076 17.6424 7.23125 18.3C7.66875 18.3812 7.85625 18.1125 7.85625 17.8812C7.85625 17.65 7.85625 17.125 7.85625 16.3937C5.425 16.9187 4.9125 15.2187 4.9125 15.2187C4.74153 14.683 4.3817 14.2277 3.9 13.9375C3.10625 13.4 3.9625 13.4062 3.9625 13.4062C4.23975 13.4454 4.50439 13.5474 4.7362 13.7045C4.968 13.8615 5.16085 14.0695 5.3 14.3125C5.54209 14.7467 5.94671 15.067 6.4249 15.2029C6.90308 15.3389 7.41569 15.2794 7.85 15.0375C7.88529 14.594 8.08079 14.1786 8.4 13.8687C6.4625 13.6437 4.41875 12.8937 4.41875 9.54374C4.40458 8.67368 4.72702 7.83176 5.31875 7.19374C5.05091 6.44011 5.08223 5.61247 5.40625 4.88124C5.40625 4.88124 6.1375 4.64374 7.8125 5.77499C9.24467 5.38433 10.7553 5.38433 12.1875 5.77499C13.8563 4.64374 14.5875 4.88124 14.5875 4.88124C14.9115 5.61247 14.9428 6.44011 14.675 7.19374C15.2667 7.83176 15.5892 8.67368 15.575 9.54374C15.575 12.9062 13.5313 13.6437 11.5813 13.8625C11.7901 14.0742 11.9512 14.3283 12.0536 14.6075C12.1561 14.8867 12.1974 15.1847 12.175 15.4812C12.175 16.65 12.175 17.5937 12.175 17.8812C12.175 18.1687 12.3313 18.3875 12.8 18.3C14.7731 17.6416 16.4471 16.3018 17.5218 14.5209C18.5965 12.74 19.0016 10.6345 18.6646 8.58198C18.3275 6.52944 17.2703 4.6641 15.6824 3.32047C14.0946 1.97684 12.08 1.24281 10 1.24999V1.24999Z"
+              fill="var(--foregroundColor)"
+            />
+          </svg>
+        </a>
+        <a id="darkMode-toggle" class="plain" href="javascript:void(0)">
+            <svg
+              class="h-1 w-1"
+              viewBox="0 0 20 20"
+              width="22"
+              height="22"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M10.625 1.25H9.375V3.125H10.625V1.25Z"
+                fill="var(--foregroundColor)"
+              />
+              <path
+                d="M18.75 9.375H16.875V10.625H18.75V9.375Z"
+                fill="var(--foregroundColor)"
+              />
+              <path
+                d="M10.625 16.875H9.375V18.75H10.625V16.875Z"
+                fill="var(--foregroundColor)"
+              />
+              <path
+                d="M3.125 9.375H1.25V10.625H3.125V9.375Z"
+                fill="var(--foregroundColor)"
+              />
+              <path
+                d="M4.29013 3.41836L3.40625 4.30225L4.73208 5.62807L5.61596 4.74419L4.29013 3.41836Z"
+                fill="var(--foregroundColor)"
+              />
+              <path
+                d="M15.7006 3.41221L14.3748 4.73804L15.2586 5.62192L16.5845 4.2961L15.7006 3.41221Z"
+                fill="var(--foregroundColor)"
+              />
+              <path
+                d="M15.2603 14.3764L14.3765 15.2603L15.7023 16.5861L16.5862 15.7022L15.2603 14.3764Z"
+                fill="var(--foregroundColor)"
+              />
+              <path
+                d="M3.4187 15.7062L4.7437 14.375L5.62495 15.2625L4.29995 16.5875L3.4187 15.7062Z"
+                fill="var(--foregroundColor)"
+              />
+              <path
+                d="M10 5C9.0111 5 8.0444 5.29324 7.22215 5.84265C6.39991 6.39206 5.75904 7.17295 5.3806 8.08658C5.00217 9.00021 4.90315 10.0055 5.09608 10.9755C5.289 11.9454 5.76521 12.8363 6.46447 13.5355C7.16373 14.2348 8.05465 14.711 9.02455 14.9039C9.99446 15.0969 10.9998 14.9978 11.9134 14.6194C12.8271 14.241 13.6079 13.6001 14.1574 12.7779C14.7068 11.9556 15 10.9889 15 10C15 8.67392 14.4732 7.40215 13.5355 6.46447C12.5979 5.52678 11.3261 5 10 5ZM10 13.75C9.00544 13.75 8.05161 13.3549 7.34835 12.6517C6.64509 11.9484 6.25 10.9946 6.25 10C6.25 9.00544 6.64509 8.05161 7.34835 7.34835C8.05161 6.64509 9.00544 6.25 10 6.25V13.75Z"
+                fill="var(--foregroundColor)"
+              />
+            </svg>
+        </a>
+      
+      
+        </div>
+      </p>
+    </header>
+    <main>
+      <div class="wrapper">
+        <form>
+          <div>
+            <label for="">Underlying Spot</label>
+            <input type="number" class="spot" step="0.05" min="0" value="1450" />
+          </div>
+          <div>
+            <label for="">Strike</label>
+            <input type="number" class="strike" step="1" min="0" value="1500" />
+          </div>
+          <div>
+            <label for="">Expiry <span class="opacity4">(days left)</span></label>
+            <input type="number" class="expiry" step="1" min="0" value="5" />
+          </div>
+          <div>
+            <label for=""
+              >Annual Volatility<span class="opacity4"> (%)</span></label
+            >
+            <input
+              type="number"
+              class="volatility"
+              value="18"
+              min="0"
+              step="0.01"
+            />
+          </div>
+          <div>
+            <label for="">Risk free rate<span class="opacity4"> (%)</span></label>
+            <input
+              type="number"
+              class="riskFreeRate"
+              value="3.40"
+              min="0"
+              step="0.01"
+            />
+          </div>
+          <div>
+            <label for="">Dividend yield<span class="opacity4"> (%)</span></label>
+            <input
+              type="number"
+              class="dividend"
+              value="0.0"
+              min="0"
+              step="0.01"
+            />
+          </div>
+        </form>
+        <table>
+          <thead>
+            <tr>
+              <th></th>
+              <th class="text-center">Call Option</th>
+              <th class="text-center">Put Option</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Premium</td>
+              <td class="call-premium mono"></td>
+              <td class="put-premium mono"></td>
+            </tr>
+            <tr>
+              <td>Delta <span class="opacity4">(Δ)</span></td>
+              <td class="call-delta mono"></td>
+              <td class="put-delta mono"></td>
+            </tr>
+            <tr>
+              <td>Gamma <span class="opacity4">(Γ)</span></td>
+              <td colspan="2" class="gamma mono"></td>
+            </tr>
+            <tr>
+              <td>Vega <span class="opacity4">(ν)</span></td>
+              <td colspan="2" class="vega mono"></td>
+            </tr>
+            <tr>
+              <td>Theta <span class="opacity4">(Θ)</span></td>
+              <td class="call-theta mono"></td>
+              <td class="put-theta mono"></td>
+            </tr>
+            <tr>
+              <td>Rho <span class="opacity4">(Ρ)</span></td>
+              <td class="call-rho mono"></td>
+              <td class="put-rho mono"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </main>
+    <footer>
+      <p>For years people have been trading options contracts without any theoretical model for price discovery. In 1973 Fisher Black and Myron Scholes first published the Black-Scholes Model, then Robert C Merton developed the model and applied a complete mathematical understanding to the pricing formula. This pricing model is considered sacred in the financial market, so much so that all three of them received the 1997 Noble Prize for Economic Sciences.</p>
+      <p>The formula involves complex math. If you are a math nerd or curious about how it works, check out the <a href="https://wikipedia.org/wiki/Black%E2%80%93Scholes_model#Black%E2%80%93Scholes_formula" target="_blank">formula</a> or <a target="_blank" href="https://github.com/imohanvadivel/black-scholes-model">source code</a> for this application.</p>
+    </footer>
+
+  </body>
+  <script src="./script.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/grilles@1.0.3/grille.debug.css" />
+  <script src="https://unpkg.com/grilles@1.0.3/debug.js"></script>
+</html>
