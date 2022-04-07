@@ -15,7 +15,7 @@
     "build": "esbuild src/style.css src/script.ts --bundle --minify --outdir=./"
   },
   "dependencies": {
-    "grilles": "^1.0.5"
+    "grilles": "^1.0.6"
   },
   "devDependencies": {
     "esbuild": "^0.14.21"
